@@ -43,6 +43,8 @@
     <link rel="preload" as='style'  type="text/css" href="{{asset('frontend/css/404page.scss.css')}}">
     <link rel="preload" as='style'  type="text/css" href="{{asset('frontend/css/bootstrap-4-3-min.css')}}">
     <link rel="preload" as='style'  type="text/css" href="{{asset('frontend/css/quickviews_popup_cart.scss.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/css/breadcrumb_style.scss.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/css/main.css')}}">
     {{-- <link rel="preload" as='style'  type="text/css" href="{{asset('frontend/css/page-wishlist.scss.css')}}"> --}}
     <link rel="stylesheet" href="{{asset('frontend/css/bootstrap-4-3-min.css')}}">
     <link href="{{asset('frontend/css/main.scss.css')}}" rel="stylesheet" type="text/css" media="all" />

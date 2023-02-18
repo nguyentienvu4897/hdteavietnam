@@ -29,7 +29,7 @@ class HomeController extends Controller
         $data['prizes'] = Prize::where(['status'=>1])->get();
         $data['reviewCus'] = ReviewCus::where(['status'=>1])->get();
         $data['services'] = Services::where('status',1)->get();
-        $data['homeProducts'] = Product::where(['status'=>1])->get(['id','images','name','slug','cate_slug']);
+        $data['homeProducts'] = Product::where(['status'=>1])->get(['id','images','name','slug','cate_slug','price','discount']);
         $data['serviceCategories'] = ServiceCategory::where('status',1)->get();
         return view('home',$data);
     }

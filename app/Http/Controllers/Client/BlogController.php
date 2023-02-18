@@ -22,10 +22,10 @@ class BlogController extends Controller
         ->orderBy('id','DESC')
         ->select(['id','title','image','description','created_at','slug'])
         ->paginate(9);
-        $data['bloghot'] = Blog::where(['status'=>1])
+        $data['bloghot'] = Blog::where(['status'=>1,'home_status'=>1])
         ->orderBy('id','ASC')
         ->select(['id','title','image','description','created_at','slug'])
-        ->paginate(5);
+        ->limit(10)->get();
         $data['news'] = Blog::where(['status'=>1])
         ->orderBy('id','DESC')
         ->select(['id','title','image','description','created_at','slug'])
@@ -65,6 +65,10 @@ class BlogController extends Controller
         ->orderBy('id','DESC')
         ->select(['id','title','image','description','created_at','slug'])
         ->paginate(9);
+        $data['bloghot'] = Blog::where(['status'=>1,'home_status'=>1])
+        ->orderBy('id','ASC')
+        ->select(['id','title','image','description','created_at','slug'])
+        ->limit(10)->get();
         return view('blog.detail',$data);
     }
     public function search_blog(Request $request)

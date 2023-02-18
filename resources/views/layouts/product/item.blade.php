@@ -1,29 +1,43 @@
 
 @php
-      $img = json_decode($product->images);
+      $img = json_decode($product['images']);
+      $giagiam = $product['price']-$product['price']*$product['discount']/100;
 @endphp
-<form action="/cart/add" method="post" class="wishItem variants product-box product-block-item" data-cart-form data-id="product-actions-24840825" enctype="multipart/form-data">
+<form  class="wishItem variants product-box product-block-item" data-cart-form data-id="product-actions-24840825" enctype="multipart/form-data">
    <div class="product-thumbnail">
-      <a class="image_thumb scale_hover product-transition" href="/chuoi-nam-my" title="Chuối Nam Mỹ">
-      <img class="lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"  data-src="{{$img[0]}}" alt="Chuối Nam Mỹ">
+      <a class="image_thumb scale_hover product-transition" href="{{route('detailProduct',['cate'=>$product['cate_slug'],'slug'=>$product['slug']])}}" title="{{languageName($product['name'])}}">
+      <img class="lazyload" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"  data-src="{{$img[0]}}" alt="{{languageName($product['name'])}}">
       </a>
+      @if($product['discount'] > 0)
       <span class="smart"><span>-
-      20% 
+      {{$product['discount']}}% 
       </span></span>
+      @endif
    </div>
    <div class="product-info">
       <div class="product-content">
-         <h3 class="product-name"><a href="/chuoi-nam-my" title="Chuối Nam Mỹ">Chuối Nam Mỹ</a></h3>
+         <h3 class="product-name"><a href="{{route('detailProduct',['cate'=>$product['cate_slug'],'slug'=>$product['slug']])}}" title="{{languageName($product['name'])}}">{{languageName($product['name'])}}</a></h3>
          <div class="blockprice">
+            @if($product['price']>0 && $product['discount']>0 && $product['discount'] <100)
                <div class="price-box">
-               120.000₫&nbsp;
-               <span class="compare-price">150.000₫</span>
+               {{number_format($giagiam)}}₫&nbsp;
+               <span class="compare-price">{{number_format($product['price'])}}₫</span>
                </div>
+            @elseif($product['price']>0 && $product['discount'] == 0)
+                  <div class="price-box">
+                     {{number_format($product['price'])}}₫&nbsp;
+                  </div>
+            @else
+                  <div class="price-box">
+                     <a href="tel:+{{$setting->phone1}}">@lang('lang.contact')</a>
+                  </div>
+            @endif
+            
          </div>
       </div>
    </div>
    <div class="product-action d-xl-flex d-none">
-      <a title="Xem nhanh" href="/chuoi-nam-my" data-handle="chuoi-nam-my" class="xem_nhanh btn-circle btn_view btn right-to quick-view hidden-xs hidden-sm">
+      <a title="Xem nhanh" href="javascript:;" data-handle="chuoi-nam-my" class="xem_nhanh btn-circle btn_view btn right-to quick-view hidden-xs hidden-sm">
          <svg width="30" height="18" viewBox="0 0 30 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                <path fill-rule="evenodd" clip-rule="evenodd" d="M14.9998 0C22.6775 0 28.6889 8.10561 28.9412 8.45074C29.1805 8.77783 29.1805 9.22225 28.9412 9.54962C28.6889 9.89442 22.6775 18.0001 14.9998 18.0001C7.32209 18.0001 1.31039 9.89448 1.05836 9.54935C0.819413 9.22192 0.819413 8.77783 1.05836 8.45041C1.31039 8.10561 7.32209 0 14.9998 0ZM2.99617 8.99941C4.44614 10.7582 9.34434 16.138 14.9998 16.138C20.6673 16.138 25.5553 10.7609 27.0034 9.00068C25.5528 7.24098 20.6549 1.86207 14.9998 1.86207C9.3322 1.86207 4.44426 7.23911 2.99617 8.99941ZM9.41351 9.00006C9.41351 5.91985 11.9196 3.4138 14.9998 3.4138C18.08 3.4138 20.586 5.91985 20.586 9.00006C20.586 12.0803 18.08 14.5863 14.9998 14.5863C11.9196 14.5863 9.41351 12.0803 9.41351 9.00006ZM11.2756 9.00006C11.2756 11.0536 12.9462 12.7242 14.9998 12.7242C17.0534 12.7242 18.7239 11.0536 18.7239 9.00006C18.7239 6.94653 17.0533 5.27592 14.9998 5.27592C12.9462 5.27592 11.2756 6.94653 11.2756 9.00006Z" fill="#A1CCA3"/>
          </svg>

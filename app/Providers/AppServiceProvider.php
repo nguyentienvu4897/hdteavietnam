@@ -14,8 +14,10 @@ use App\models\product\Category;
 use App\models\language\Language;
 use App\models\Province;
 use App\models\Services;
+use App\models\blog\Blog;
 use App\models\Promotion;
 use App\models\blog\BlogCategory;
+use App\models\product\Product;
 use App\models\ServiceCategory;
 
 class AppServiceProvider extends ServiceProvider
@@ -49,6 +51,10 @@ class AppServiceProvider extends ServiceProvider
             $serviceCategory = ServiceCategory::where('status',1)->get();
             $setting = Setting::first();
             $lang = Language::get();
+            $bloghot = Blog::where(['status'=>1,'home_status'=>1])
+            ->orderBy('id','ASC')
+            ->select(['id','title','image','description','created_at','slug'])
+            ->limit(10)->get();
             $categoryhome = Category::with([
                 'typeCate' => function ($query) {
                     $query->with(['typetwo'])->where('status',1)->orderBy('id','DESC')->select('cate_id','id', 'name','avatar','slug','cate_slug'); 
@@ -57,6 +63,7 @@ class AppServiceProvider extends ServiceProvider
                 $query->setRelation('product', $query->product->take(9));
                 return $query;
             });
+            $producthot = Product::orderBy('id','desc')->limit(5)->where(['status' => '1','discountStatus'=>'1'])->get();
             $banner = Banner::where(['status'=>1])->get(['id','image','link','title','description']);
             $cartcontent = session()->get('cart', []);
             $viewold = session()->get('viewoldpro', []);
@@ -86,7 +93,9 @@ class AppServiceProvider extends ServiceProvider
                 'blogCate'=>$blogCate,
                 'serviceCategory'=>$serviceCategory,
                 'language_current'=>$language_current,
-                'helpCus'=>$helpCus
+                'helpCus'=>$helpCus,
+                'producthot'=>$producthot,
+                'bloghot'=>$bloghot
                 ]);    
         });  
     }

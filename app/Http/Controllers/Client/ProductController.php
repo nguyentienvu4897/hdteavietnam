@@ -17,7 +17,7 @@ class ProductController extends Controller
     public function allProduct()
     {
         $data['list'] = Product::where('status',1)->orderBy('id','DESC')->select('id','category','name','discount','price','images','slug','cate_slug','type_slug')
-        ->paginate(12);
+        ->paginate(9);
         $data['title'] = "Tất cả sản phẩm";
         $data['content'] = 'none';
         return view('product.list',$data);
@@ -28,7 +28,7 @@ class ProductController extends Controller
         $data['list'] = Product::where(['status'=>1,'cate_slug'=>$danhmuc])
         ->orderBy('id','DESC')
         ->select('id','category','name','discount','price','images','slug','cate_slug','type_slug','description')
-        ->paginate(12);
+        ->paginate(9);
         $data['cateno'] = Category::where('slug',$danhmuc)->first(['id','name','avatar','content','slug']);
         $cate_id = $data['cateno']->id;
         $data['cateid'] = $cate_id;
@@ -40,7 +40,7 @@ class ProductController extends Controller
         $data['list'] = Product::where(['status'=>1,'cate_slug'=>$danhmuc,'type_slug'=>$loaidanhmuc])
         ->orderBy('id','DESC')
         ->select('id','category','name','discount','price','images','slug','cate_slug','type_slug','description')
-        ->paginate(12);
+        ->paginate(9);
         $data['pronew'] = Product::where('status',1)->orderBy('id','DESC')->select('id','category','name','discount','price','images','slug','cate_slug','type_slug')
         ->paginate(5);
         $data['type'] = TypeProduct::where('slug',$loaidanhmuc)->first(['id','name','cate_id','content']);

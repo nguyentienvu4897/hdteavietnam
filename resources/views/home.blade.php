@@ -191,7 +191,7 @@
                 <div class="not-dqtab e-tabs ajax-tab-1 ajax" data-section="ajax-tab-1" data-view="grid_1">
                 <div class="title_modules title_module_main clearfix">
                     <h2 class="title_tab">
-                        <span>@lang('lang.products')</span>
+                        <span><a href="{{route('allProduct')}}">@lang('lang.products')</a></span>
                     </h2>
                     <ul class="nav-tab">
                         <li class="tab-link tabs-title tabtitle1 ajax has-content current" data-tab="tab-0" data-url="san-pham-noi-bat">
@@ -211,6 +211,7 @@
                             <div class="swipertab swiper-tab-top swiper-first">
                                 <div class="swiper-wrapper">
                                     @foreach ($homeProducts as $product)
+                                    
                                         <div class="swiper-slide">
                                             @include('layouts.product.item', ['product' => $product])
                                         </div>
