@@ -21,6 +21,7 @@ return [
    'noidung'=>'Product informations',
    'detailpro'=>'Product details',
     'en' => 'English',
+    'searched'=>'Searched',
     'vi' => 'Vietnamese',
     'search' => 'Search product',
     'contact-with-us' => 'Contact with us',

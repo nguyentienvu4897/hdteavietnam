@@ -8,6 +8,7 @@ return [
     'blog' => 'Tin tức',
     'contactus' => 'Liên hệ',
     'hotline' => 'Hỗ trợ',
+    'searched'=> 'Tìm kiếm được',
     'lang' => 'Ngôn ngữ',
     'en' => 'Tiếng Anh',
     'vi' => 'Tiếng Việt',

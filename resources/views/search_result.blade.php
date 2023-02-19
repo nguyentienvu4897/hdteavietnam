@@ -9,99 +9,58 @@ Kết quả tìm kiếm
 {{url(''.$setting->logo)}}
 @endsection
 @section('css')
+<link rel="stylesheet" href="{{asset('frontend/css/search_style.scss.css')}}">
 @endsection
 @section('content')
-<div class="breadcrumb-area">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="breadcrumb-content">
-					<ul class="nav">
-						<li><a href="{{route('home')}}">Trang chủ</a></li>
-						<li>Kết quả tìm kiếm</li>
-					</ul>
+<div class="bodywrap">
+	<div class="breadcrumb_background">
+	   <section class="bread-crumb">
+		  <span class="crumb-border"></span>
+		  <div class="container">
+			 <div class="row">
+				<div class="col-lg-12 col-12 a-left">
+				   <ul class="breadcrumb" >
+					  <li class="home">
+						 <a  href="{{route('home')}}" ><span >@lang('lang.home')</span></a>						
+						 <span class="mr_lr">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+							   <!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+							   <path d="M96 480c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L242.8 256L73.38 86.63c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l192 192c12.5 12.5 12.5 32.75 0 45.25l-192 192C112.4 476.9 104.2 480 96 480z"/>
+							</svg>
+						 </span>
+					  </li>
+					  <li><strong><span>@lang('lang.search')</span></strong></li>
+				   </ul>
 				</div>
-			</div>
-		</div>
-	</div>
- </div>
- <div class="shop-category-area mt-30px">
-	<div class="container">
-	   <div class="row">
-		  <div class="col-lg-12 col-md-12">
-			 <!-- Shop Top Area Start -->
-			 {{-- <div class="shop-top-bar d-flex"> --}}
-				@if (count($resultPro)>0)
-				<h3>Tìm thấy <strong>{{$countproduct}}</strong> kết quả với từ khóa <strong>"{{$keyword}}"</h3>
-				@else
-				<h3>Không tìm thấy kết quả với từ khóa <strong>"{{$keyword}}"</h3>
-				@endif
-			 {{-- </div> --}}
-			 <!-- Shop Top Area End -->
-			 <!-- Shop Bottom Area Start -->
-			 <div class="shop-bottom-area mt-35">
-				<!-- Shop Tab Content Start -->
-				<div class="tab-content jump">
-				   <!-- Tab One Start -->
-				   <div id="shop-1" class="tab-pane active">
-					  <div class="row responsive-md-class">
-						@foreach ($resultPro as $pro)
-						@php
-						$img = json_decode($pro['images']);
-						@endphp
-						 <div class="col-xl-3 col-md-4 col-sm-6">
-							<article class="list-product">
-								<div class="img-block">
-								   <a href="{{route('detailProduct',['cate'=>$pro['cate_slug'],'type'=>$pro['type_slug'] ? $pro['type_slug'] : 'loai','id'=>$pro['slug']])}}" class="thumbnail">
-								   <img class="first-img" src="{{$img[0]}}" alt="" />
-								   <img class="second-img" src="{{$img[1]}}" alt="" />
-								   </a>
-								</div>
-								@if ($pro['discount'] > 0)
-								<ul class="product-flag">
-								   <li class="new">-{{$pro['discount']}}%</li>
-								</ul>
-								@endif
-								<div class="product-decs">
-								   <a class="inner-link" href="{{route('detailProduct',['cate'=>$pro['cate_slug'],'type'=>$pro['type_slug'] ? $pro['type_slug'] : 'loai','id'=>$pro['slug']])}}"><span>{{languageName($pro['name'])}}</span></a>
-								   <div class="pricing-meta">
-									  @if ($pro['price'] > 0)
-										 <ul>
-											@if ($pro['discount'] > 0)
-											<li class="old-price">{{number_format($pro['price'])}}đ</li>
-											<li class="current-price">{{number_format($pro['price']-($pro['price']*($pro['discount']/100)))}}đ</li>
-											@else
-											<li class="current-price">{{number_format($pro['price'])}}đ</li>
-											@endif
-										 </ul>
-									  @else 
-										  <ul>
-											<li class="current-price">Liên hệ</li>
-										 </ul>
-										 @endif
-										 {!!languageName($pro['description'])!!}
-								  </div>
-								</div>
-								<div class="add-to-link">
-								   <ul>
-									  <li class="cart">
-										 <input type="hidden"  id="inputqty" value="1">
-										 <a class="cart-btn" href="javascript:;" onclick="addToCart({{$pro['id']}},1)">Thêm giỏ hàng</a
-											></li>
-								   </ul>
-								</div>
-							 </article>
-						 </div>
-						 @endforeach
-					  </div>
-				   </div>
-				   
-				   <!-- Tab One End -->
-				</div>>
 			 </div>
-			 <!-- Shop Bottom Area End -->
+		  </div>
+	   </section>
+	   <div class="title_full">
+		  <div class="container a-center">
+			 <h1 class="title_page">{{$keyword}} - @lang('lang.search')</h1>
 		  </div>
 	   </div>
 	</div>
- </div>
+	<section class="signup search-main wrap_background background_white clearfix">
+	   <div class="container">
+		  <div class="margin-bottom-15 no-padding">
+			 <h1 class="title-head title_search">@lang('lang.searched') {{$countproduct}} @lang('lang.products') </h1>
+		  </div>
+		  <div class="category-products">
+			 <div class="products-view-grid">
+				<div class="row">
+					@foreach ($resultPro as $item)
+						<div class="col-6 col-md-4 col-lg-3">
+						<div class="item_product_main">
+								@include('layouts.product.item',['product'=>$item])
+						</div>
+						</div>
+					@endforeach
+				</div>
+			 </div>
+		  </div>
+		
+	   </div>
+	</section>
+	
 @endsection
