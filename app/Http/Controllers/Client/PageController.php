@@ -45,7 +45,8 @@ class PageController extends Controller
     }
     public function quickview($id){
         $data['product'] = Product::with('cate')->where('id',$id)->first();
-        return view('layouts.product.quickview',$data);
+        $view = view('layouts.product.quickview',$data)->render();
+        return response()->json(['html' => $view]);
     }
     public function aboutUs(){
         $data['partner'] = Partner::where(['status'=>1])->get(['id','image','name','link']);

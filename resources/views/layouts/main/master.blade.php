@@ -128,115 +128,9 @@
     <!-- Quick view -->
     <div id="quick-view-product" class="quickview-product" style="display:none;">
         <div class="quickview-overlay fancybox-overlay fancybox-overlay-fixed"></div>
-        <div class="quick-view-product"></div>
-        <div id="quickview-modal" style="display:none;">
-            <div class="block-quickview primary_block details-product">
-            <div class="row">
-                <div class="product-left-column product-images col-xs-12 col-sm-4 col-md-4 col-lg-5 col-xl-6">
-                    <div class="image-block large-image col_large_default">
-                        <span class="view_full_size">
-                        <a class="img-product" title="" href="javascript:;">
-                        <img src="//bizweb.dktcdn.net/100/448/970/themes/894899/assets/logo.png?1676280280637" id="product-featured-image-quickview" class="img-responsive product-featured-image-quickview" alt="quickview"  />
-                        </a>
-                        </span>
-                        <div class="loading-imgquickview" style="display:none;"></div>
-                    </div>
-                    <div class="more-view-wrapper clearfix">
-                        <div class="thumbs_quickview owl_nav_custome1 swiper-container" id="thumbs_list_quickview">
-                        <ul class="product-photo-thumbs quickview-more-views-owlslider not-thuongdq swiper-wrapper" id="thumblist_quickview"></ul>
-                        <div class="swiper-button-prev">
-                        </div>
-                        <div class="swiper-button-next">
-                        </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-center-column product-info product-item col-xs-12 col-sm-6 col-md-8 col-lg-7 col-xl-6 details-pro style_product style_border">
-                    <div class="head-qv group-status">
-                        <h3 class="qwp-name title-product">abc</h3>
-                    </div>
-                    <div class="quickview-info">
-                        <span class="prices price-box">
-                        <span class="price product-price"></span>
-                        <del class="old-price"></del>
-                        </span>
-                    </div>
-                    <form action="/cart/add" method="post" enctype="multipart/form-data" class="quick_option variants form-ajaxtocart form-product">
-                        <span class="price-product-detail d-none" style="opacity: 0;">
-                        <span class=""></span>
-                        </span>
-                        <select name='variantId' class="d-none" style="display:none"></select>
-                        <div class="product-description product-summary">
-                        <div class="rte">
-                        </div>
-                        </div>
-                        <div class="form_product_content">
-                        <div class="count_btn_style quantity_wanted_p">
-                            <div class=" soluong1 clearfix">
-                                <label class="sl section">Số lượng:</label>
-                                <div class="sssssscustom input_number_product">
-                                    <a class="btn_num num_1 button button_qty" onClick="var result = document.getElementById('quantity-detail'); var qtyqv = result.value; if( !isNaN( qtyqv ) &amp;&amp; qtyqv &gt; 1 ) result.value--;return false;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                                        <!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                                        <path d="M400 288h-352c-17.69 0-32-14.32-32-32.01s14.31-31.99 32-31.99h352c17.69 0 32 14.3 32 31.99S417.7 288 400 288z"/>
-                                    </svg>
-                                    </a>
-                                    <input type="text" id="quantity-detail" name="quantity" value="1" maxlength="2" class="form-control prd_quantity" onkeypress="if ( isNaN(this.value + String.fromCharCode(event.keyCode) )) return false;" onchange="if(this.value == 0)this.value=1;">
-                                    <a class="btn_num num_2 button button_qty" onClick="var result = document.getElementById('quantity-detail'); var qtyqv = result.value; if( !isNaN( qtyqv )) result.value++;return false;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                                        <!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                                        <path d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z"/>
-                                    </svg>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="button_actions clearfix">
-                                <button type="submit" class="qv_add_to_cart btn_cool btn btn_base fix_add_to_cart ajax_addtocart btn_add_cart btn-cart add_to_cart add_to_cart_detail">
-                                <span class="btn-content text_1">Cho vào giỏ</span>
-                                <span class="regular">Thêm vào giỏ để chọn tiếp</span>
-                                </button>
-                            </div>
-                        </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            </div>
-            <a title="Close" class="quickview-close close-window" href="javascript:;">
-            <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="svg-inline--fa fa-times fa-w-10">
-                <path fill="currentColor" d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z" class=""></path>
-            </svg>
-            </a>
+        <div class="quick-view-product">
         </div>
-    </div>
-    <script>
-        var modal = $('.quickview-product');
-        var btn = $('.quick-view');
-        var span = $('.quickview-close');
-        btn.click(function () {
-            modal.show();
-        });
-
-        span.click(function () {
-            modal.hide();
-        });
-
-        $(window).on('click', function (e) {
-            if ($(e.target).is('.modal')) {
-                modal.hide();
-                
-            }
-        });
-
-        $('.cart-drop .icon').click(function(){
-        $('.cart-sidebar, .backdrop__body-backdrop___1rvky').addClass('active');
-        });
-        
-        $(document).on('click','.backdrop__body-backdrop___1rvky, .cart_btn-close', function() {   
-        $('.backdrop__body-backdrop___1rvky, .cart-sidebar, #popup-cart-desktop, .popup-cart-mobile').removeClass('active');
-        return false;
-        })
-    </script>		
+    </div>	
     <link rel="preload" as="script" href="{{asset('frontend/js/index.js')}}" />
     <script src="{{asset('frontend/js/index.js')}}" type="text/javascript"></script>
     <link rel="preload" as="script" href="{{asset('frontend/js/main.js')}}" />
@@ -255,5 +149,7 @@
     <script src="{{asset('frontend/js/wishlist.js')}}" type="text/javascript"></script>
     <div id="popupCartModal" class="modal fade" role="dialog">
     </div>
+    @yield('js')
+    <script src="{{'frontend/js/jscustom.js'}}"></script>
 </body>
 </html>
