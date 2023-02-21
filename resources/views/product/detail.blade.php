@@ -58,7 +58,6 @@ $imgs = json_decode($product->images);
    </section>
 </div>
 <section class="product layout-product" itemscope itemtype="https://schema.org/Product">
-  
    <div class="d-none hidden" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
       <div class="inventory_quantity hidden" itemscope itemtype="http://schema.org/ItemAvailability">
          <span class="a-stock" itemprop="supersededBy">
@@ -66,10 +65,8 @@ $imgs = json_decode($product->images);
          </span>
       </div>
       <link itemprop="availability" href="http://schema.org/InStock">
-      
    </div>
    <div class="d-none hidden" id="https://template-big-green.mysapo.net" itemprop="seller" itemtype="http://schema.org/Organization" itemscope>
-     
    </div>
    <div class="product-page">
       <div class="product_top details-product">
@@ -80,12 +77,12 @@ $imgs = json_decode($product->images);
                      <div class="swiper-container gallery-top col_large_default large-image">
                         <div class="swiper-wrapper" id="lightgallery">
                            @php
-                               $imgs = json_decode($product->images);
+                           $imgs = json_decode($product->images);
                            @endphp
                            @foreach ($imgs as $img)
-                              <a class="swiper-slide" data-hash="0" href="{{$img}}" title="Click để xem">
-                              <img height="540" width="540" src="{{$img}}" alt="Bơ Trung Đ&#244;ng" data-image="{{$img}}" class="img-product img-responsive mx-auto d-block swiper-lazy" />
-                              </a>
+                           <a class="swiper-slide" data-hash="0" href="{{$img}}" title="Click để xem">
+                           <img height="540" width="540" src="{{$img}}" alt="Bơ Trung Đ&#244;ng" data-image="{{$img}}" class="img-product img-responsive mx-auto d-block swiper-lazy" />
+                           </a>
                            @endforeach
                         </div>
                      </div>
@@ -93,87 +90,85 @@ $imgs = json_decode($product->images);
                         <div class="swiper-container gallery-thumbs">
                            <div class="swiper-wrapper">
                               @foreach ($imgs as $img)
-                                 <div class="swiper-slide" data-hash="0">
-                                    <div class="p-100">
-                                       <img height="80" width="80" src="{{$img}}" alt="Bơ Trung Đ&#244;ng" data-image="{{$img}}" class="swiper-lazy" />
-                                    </div>
+                              <div class="swiper-slide" data-hash="0">
+                                 <div class="p-100">
+                                    <img height="80" width="80" src="{{$img}}" alt="Bơ Trung Đ&#244;ng" data-image="{{$img}}" class="swiper-lazy" />
                                  </div>
+                              </div>
                               @endforeach
-                           
                            </div>
                         </div>
                         <div class="swiper-button-next"></div>
                         <div class="swiper-button-prev"></div>
                      </div>
                   </div>
-                
                </div>
                <div class="details-pro col-12 col-md-6 col-lg-6 col-xl-6">
                   <h1 class="title-product">{{languageName($product->name)}}</h1>
                   <div class="inventory_quantity">
-                   
                      <span class="mb-break">
-                   
                      <span class="stock-brand-title"><i>@lang('lang.madein')</i></span>
-                  
                      </span>
                   </div>
-                  <form enctype="multipart/form-data" data-cart-form id="add-to-cart-form" action="/cart/add" method="post" class="form-inline">
+                  <form  id="add-to-cart-form" class="form-inline">
                      @php
-                         $giagiam =$product->price -$product->price*$product->discount/100;
+                     $giagiam =$product->price -$product->price*$product->discount/100;
                      @endphp
-                     @if($product['price']>0 && $product['discount']>0 && $product['discount'] <100)
+                     @if($product['price']>0 && $product['discount']>=0 && $product['discount'] <100)
                      <div class="price-box clearfix">
                         <span class="special-price">
-                           <span class="price product-price" style="color: red">{{number_format($giagiam)}}₫</span>
+                        <span class="price product-price" style="color: red">{{number_format($giagiam)}}₫</span>
                         </span>
                         <!-- Giá Khuyến mại -->
                         <span class="old-price" itemprop="priceSpecification" itemscope="" itemtype="http://schema.org/priceSpecification">
-                           <del class="price product-price-old">
-                              {{number_format($product->price)}}₫
-                           </del>
+                        <del class="price product-price-old">
+                        {{number_format($product->price)}}₫
+                        </del>
                         </span>
                         <!-- Giás gốc -->
                         <span class="save-price">
                         -{{$product->discount}}% 
                         </span>
                      </div>
-                  @elseif($product['price']>0 && $product['discount'] == 0)
-                  <div class="price-box clearfix">
-                     <span class="special-price">
+                     @elseif($product['price']>0 && $product['discount'] >= 0)
+                     <div class="price-box clearfix">
+                        <span class="special-price">
                         <span class="price product-price" style="color:red">{{number_format($product->price)}}₫</span>
-                     </span>
-                     <!-- Giá Khuyến mại -->
-                     
-                  </div>
-                  @else
-                        <div class="price-box">
-                           <a href="tel:+{{$setting->phone1}}" style="color: red">@lang('lang.contact')</a>
-                        </div>
-                  @endif
+                        </span>
+                        <!-- Giá Khuyến mại -->
+                     </div>
+                     @else
+                     <div class="price-box">
+                        <a href="tel:+{{$setting->phone1}}" style="color: red">@lang('lang.contact')</a>
+                     </div>
+                     @endif
+                     @if ($product['price']>0 && $product['discount']>=0 && $product['discount'] <100)
                      <div class="form-product">
                         <div class="box-variant clearfix ">
-                           <input type="hidden" id="one_variant" name="variantId" value="60522594" />
                         </div>
                         <div class="clearfix form-group ">
+                           
                            <div class="custom custom-btn-number show">
-                              <label class="sl section">@lang('lang.quantity')</label>
-                              <div class="input_number_product form-control">
-                                 <button class="btn_num num_1 button button_qty" onClick="var result = document.getElementById('qtym'); var qtypro = result.value; if( !isNaN( qtypro ) &amp;&amp; qtypro &gt; 1 ) result.value--;return false;" type="button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                                       <!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                                       <path d="M400 288h-352c-17.69 0-32-14.32-32-32.01s14.31-31.99 32-31.99h352c17.69 0 32 14.3 32 31.99S417.7 288 400 288z"/>
-                                    </svg>
-                                 </button>
-                                 <input type="text" id="qtym" name="quantity" value="1" maxlength="3" class="form-control prd_quantity" onkeypress="if ( isNaN(this.value + String.fromCharCode(event.keyCode) )) return false;" onchange="if(this.value == 0)this.value=1;">
-                                 <button class="btn_num num_2 button button_qty" onClick="var result = document.getElementById('qtym'); var qtypro = result.value; if( !isNaN( qtypro )) result.value++;return false;" type="button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                                       <!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                                       <path d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z"/>
-                                    </svg>
-                                 </button>
-                              </div>
+                              
+                              <div class="custom custom-btn-numbers form-control">		
+                                 <button 
+                                 onclick="var result = document.getElementById('qty'); 
+                                 var qty = result.value;
+                                 if( !isNaN(qty) & qty > 1 ) result.value--;return false;" 
+                                 class="btn-minus btn-cts" 
+                                 type="button">–</button>
+                         
+                                 <input type="text" class="qty input-text" id="qty" name="quantity" size="4" value="1" maxlength="3" disabled/>
+                         
+                                 <button onclick="var result = document.getElementById('qty'); var qty = result.value; 
+                                 if( !isNaN(qty)) result.value++;return false;" 
+                                 class="btn-plus btn-cts" 
+                                 type="button">+</button>
+                                 </div>
+                  
+                    
                            </div>
+                           
                         </div>
                         <div class="product-summary">
                            <div class="rte">
@@ -183,7 +178,7 @@ $imgs = json_decode($product->images);
                         <div class="clearfix form-group ">
                            <div class="flex-quantity">
                               <div class="btn-mua button_actions clearfix">
-                                 <button type="button" class="btn fast btn_base btn-buy-now btn-cart">
+                                 <button type="button" class="btn fast btn_base btn-buy-now btn-cart add_to_cart" data-id="{{$product->id}}" data-url="{{route('addToCart',['id'=>$product->id])}}">
                                  <span class="txt-main text_1">@lang('lang.addtocart')</span>
                                  <span class="regular">@lang('lang.giaohang')</span>
                                  </button>
@@ -191,11 +186,48 @@ $imgs = json_decode($product->images);
                            </div>
                         </div>
                      </div>
+                     @else
+                     <div class="form-product">
+                        <div class="product-summary">
+                           <div class="rte">
+                              <em><i class="fa-solid fa-tags"></i>&nbsp;<a href="{{route('allListProCate',['cate'=>$product->cate->slug])}}">{{languageName($product->cate->name)}}</a></em>
+                           </div>
+                        </div>
+                        <div class="clearfix form-group ">
+                           <div class="flex-quantity">
+                              <div class="btn-mua button_actions clearfix">
+                                 <a href="tel:+{{$setting->phone1}}">
+                                 <button type="button" class="btn fast btn_base btn-buy-now btn-cart">
+                                 @lang('lang.contact')
+                                 </button>
+                                 </a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     @endif
                   </form>
                </div>
             </div>
          </div>
       </div>
+      <script>
+         $('.add_to_cart ').click(function (e) { 
+    e.preventDefault();
+    url = $(this).data('url');
+    id = $(this).data('id');
+    console.log(url,id);
+    $.ajax({
+        type: "GET",
+        url: url,
+        success: function (data) {
+            $('#CartDrawer').html(data.html1);
+            $('#CartDrawer').addClass('active');
+        }
+    });
+    
+});
+      </script>
       <div class="product_bottom">
          <div class="container">
             <div class="row">
@@ -214,7 +246,6 @@ $imgs = json_decode($product->images);
                            <div class="rte product_getcontent">
                               <div id="content">
                                  {!!languageName($product->content)!!}
-                                
                               </div>
                               <div class="read-more">
                                  <span>
@@ -228,9 +259,8 @@ $imgs = json_decode($product->images);
                         </div>
                         <div id="tab-2" class="tab-content content_extab">
                            <div class="rte">
-                             {!!languageName($product->description)!!}
+                              {!!languageName($product->description)!!}
                            </div>
-                           
                         </div>
                      </div>
                   </div>
@@ -252,11 +282,11 @@ $imgs = json_decode($product->images);
                         <div class="product-relate-swiper swiper-container">
                            <div class="swiper-wrapper">
                               @foreach ($productlq as $pro)
-                                  <div class="swiper-slide">
-                                      @include('layouts.product.item', ['product' => $pro])
-                                  </div>
+                              <div class="swiper-slide">
+                                 @include('layouts.product.item', ['product' => $pro])
+                              </div>
                               @endforeach
-                          </div>
+                           </div>
                         </div>
                      </div>
                   </div>
@@ -503,4 +533,70 @@ $imgs = json_decode($product->images);
 <script>
    (function($){"use strict";$.ajaxChimp={responses:{"We have sent you a confirmation email":0,"Please enter a valueggg":1,"An email address must contain a single @":2,"The domain portion of the email address is invalid (the portion after the @: )":3,"The username portion of the email address is invalid (the portion before the @: )":4,"This email address looks fake or invalid. Please enter a real email address":5},translations:{en:null},init:function(selector,options){$(selector).ajaxChimp(options)}};$.fn.ajaxChimp=function(options){$(this).each(function(i,elem){var form=$(elem);var email=form.find("input[type=email]");var label=form.find("label[for="+email.attr("id")+"]");var settings=$.extend({url:form.attr("action"),language:"en"},options);var url=settings.url.replace("/post?","/post-json?").concat("&c=?");form.attr("novalidate","true");email.attr("name","EMAIL");form.submit(function(){var msg;function successCallback(resp){if(resp.result==="success"){msg="We have sent you a confirmation email";label.removeClass("error").addClass("valid");email.removeClass("error").addClass("valid")}else{email.removeClass("valid").addClass("error");label.removeClass("valid").addClass("error");var index=-1;try{var parts=resp.msg.split(" - ",2);if(parts[1]===undefined){msg=resp.msg}else{var i=parseInt(parts[0],10);if(i.toString()===parts[0]){index=parts[0];msg=parts[1]}else{index=-1;msg=resp.msg}}}catch(e){index=-1;msg=resp.msg}}if(settings.language!=="en"&&$.ajaxChimp.responses[msg]!==undefined&&$.ajaxChimp.translations&&$.ajaxChimp.translations[settings.language]&&$.ajaxChimp.translations[settings.language][$.ajaxChimp.responses[msg]]){msg=$.ajaxChimp.translations[settings.language][$.ajaxChimp.responses[msg]]}label.html(msg);label.show(2e3);if(settings.callback){settings.callback(resp)}}var data={};var dataArray=form.serializeArray();$.each(dataArray,function(index,item){data[item.name]=item.value});$.ajax({url:url,data:data,success:successCallback,dataType:"jsonp",error:function(resp,text){console.log("mailchimp ajax submit error: "+text)}});var submitMsg="Submitting...";if(settings.language!=="en"&&$.ajaxChimp.translations&&$.ajaxChimp.translations[settings.language]&&$.ajaxChimp.translations[settings.language]["submit"]){submitMsg=$.ajaxChimp.translations[settings.language]["submit"]}label.html(submitMsg).show(2e3);return false})});return this}})(jQuery);
 </script>
+<style>
+                             
+   .custom-btn-numbers {
+   float: left;
+   box-shadow: none;
+   padding: 0;
+   border-radius: 7px;
+   border: 1px solid #6c6c79;
+   min-height: unset;
+   width: auto;
+   background-color: transparent;
+   height: auto;
+   transform: translateY(-18px);
+}
+
+.custom-btn-numbers .btn-cts {
+   font-size: 20px;
+   line-height: 0px;
+   border: none;
+   display: inline-block;
+   width: 35px;
+   height: 35px;
+   background: #fff;
+   float:left;
+   color: rgb(27, 7, 7);
+   text-align: center;
+   padding: 0px;
+   border-radius: 0;
+   cursor: pointer;
+}
+
+.custom-btn-numbers .btn-cts.btn-minus {
+   border-top-left-radius: 7px;
+   border-bottom-left-radius: 7px
+}
+
+.custom-btn-numbers .btn-cts.btn-plus {
+   border-top-right-radius: 7px;
+   border-bottom-right-radius: 7px
+}
+.custom-btn-numbers .btn-cts.btn-plus:active{
+   background-color: orangered;
+   color: bisque;
+}
+.custom-btn-numbers .btn-cts.btn-minus:active{
+   background-color: orangered;
+   color: bisque;
+}
+
+.custom-btn-numbers #qty {
+   height: 35px;
+   font-size: 1em;
+   margin: 0;
+   width: 35px;
+   padding: 0 2px;
+   text-align: center;
+   background: #fff;
+   min-height: unset;
+   display: block;
+   float: left;
+   box-shadow: none;
+   border-radius: 0px;
+   border: none;
+   user-select:none !important;
+}
+</style>
 @endsection

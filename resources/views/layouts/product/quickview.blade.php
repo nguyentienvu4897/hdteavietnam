@@ -53,7 +53,7 @@
 
 
            </div>
-           <form action="/cart/add" method="post" enctype="multipart/form-data" class="quick_option variants form-ajaxtocart form-product" id="product-actions-24840825">
+           <form class="quick_option variants form-ajaxtocart form-product" id="product-actions-24840825">
               <div class="product-description product-summary">
                  <div class="rte">
                     <ul>
@@ -116,7 +116,7 @@
     });
   </script>
   <!-- Demo styles -->
-  <style>
+  {{-- <style>
     .swiper {
       width: 100%;
       height: 100%;
@@ -135,7 +135,7 @@
       display: block;
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
     }
 
     .swiper {
@@ -177,4 +177,4 @@
       height: 100%;
       object-fit: cover;
     }
-  </style>
+  </style> --}}

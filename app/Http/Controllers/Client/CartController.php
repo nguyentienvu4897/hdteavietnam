@@ -89,7 +89,13 @@ class CartController extends Controller
             ];
         }
         session()->put('cart', $cart);
-        return response()->json($cart);
+        $view1 = view('layouts.product.poup-cart-desktop',$cart)->render();
+        // $view = view('layouts.product.quickview',$cart)->render();
+        return response()->json([
+            'html1' => $view1,
+            // 'html' => $view,
+        ]);
+   
     }
 
     public function update(Request $request)
@@ -98,7 +104,12 @@ class CartController extends Controller
             $cart = session()->get('cart');
             $cart[$request->id]["quantity"] = $request->quantity;
             session()->put('cart', $cart);
-            return response()->json($cart);
+            $view1 = view('layouts.product.poup-cart-desktop',$cart)->render();
+            // $view = view('layouts.product.quickview',$cart)->render();
+            return response()->json([
+                'html1' => $view1,
+                // 'html' => $view,
+            ]);
         }
     }
 
@@ -108,9 +119,12 @@ class CartController extends Controller
             $cart = session()->get('cart');
             if(isset($cart[$request->id])) {
                 unset($cart[$request->id]);
-                session()->put('cart', $cart);
             }
-            return response()->json($cart);
+            session()->put('cart', $cart);
+            $view1 = view('layouts.product.poup-cart-desktop',$cart)->render();
+            return response()->json([
+                'html1' => $view1,
+            ]);
         }
     }
 }
