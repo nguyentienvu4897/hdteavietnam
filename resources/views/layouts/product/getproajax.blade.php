@@ -9,21 +9,3 @@
         </div>
     </div>
 </div>
-<script>
-    
-$('.add_to_cart ').click(function (e) { 
-    e.preventDefault();
-    url = $(this).data('url');
-    id = $(this).data('id');
-    console.log(url,id);
-    $.ajax({
-        type: "GET",
-        url: url,
-        success: function (data) {
-            $('#CartDrawer').html(data.html1);
-            $('#CartDrawer').addClass('active');
-        }
-    });
-    
-});
-</script>

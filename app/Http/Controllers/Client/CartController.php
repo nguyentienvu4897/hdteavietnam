@@ -68,34 +68,52 @@ class CartController extends Controller
         return view('cart.list',$data);
     }
 
-    public function addToCart($id)
+    public function addToCart(Request $request)
     {
-        // session()->flush('cart');
+        $id = $request->id;
         $product = Product::findOrFail($id);
-        $cart = session()->get('cart', []);
-
-        if(isset($cart[$id])) {
-            $cart[$id]['quantity'] = $cart[$id]['quantity'] + 1;
+        $cart = session()->get('cart',[]);
+        if (isset($request->quantity)) {
+            if(isset($cart[$id])) {
+                $cart[$id]['quantity'] = $cart[$id]['quantity'] + $request->quantity;
+            } else {
+                $cart[$id] = [
+                    "id" => $product->id,
+                    "name" => $product->name,
+                    "quantity" => $request->quantity,
+                    "price" => $product->price,
+                    "discount" => $product->discount,
+                    "cate_slug" => $product->cate_slug,
+                    "type_slug" => $product->type_slug,
+                    "slug"=>$product->slug,
+                    "image" => json_decode($product->images)[0],
+                ];
+            }
         } else {
-            $cart[$id] = [
-                "id" => $product->id,
-                "name" => $product->name,
-                "quantity" => 1,
-                "price" => $product->price,
-                "discount" => $product->discount,
-                "image" => json_decode($product->images)[0],
-                "cate_slug" => $product->cate_slug,
-                "slug"=>$product->slug
-            ];
+            if(isset($cart[$id])) {
+                $cart[$id]['quantity'] = $cart[$id]['quantity'] + 1;
+            } else {
+                $cart[$id] = [
+                    "id" => $product->id,
+                    "name" => $product->name,
+                    "quantity" => 1,
+                    "price" => $product->price,
+                    "discount" => $product->discount,
+                    "cate_slug" => $product->cate_slug,
+                    "type_slug" => $product->type_slug,
+                    "slug"=>$product->slug,
+                    "image" => json_decode($product->images)[0],
+                ];
+            }
         }
         session()->put('cart', $cart);
-        $view1 = view('layouts.product.poup-cart-desktop',$cart)->render();
-        // $view = view('layouts.product.quickview',$cart)->render();
+        $data['cart'] = session()->get('cart');
+        $view1 = view('layouts.product.poup-cart-desktop',$data)->render();
+        $view2 = view('layouts.product.count-cart',$data)->render();
         return response()->json([
             'html1' => $view1,
-            // 'html' => $view,
+            'html2' => $view2,
         ]);
-   
     }
 
     public function update(Request $request)
@@ -104,11 +122,10 @@ class CartController extends Controller
             $cart = session()->get('cart');
             $cart[$request->id]["quantity"] = $request->quantity;
             session()->put('cart', $cart);
-            $view1 = view('layouts.product.poup-cart-desktop',$cart)->render();
-            // $view = view('layouts.product.quickview',$cart)->render();
+            $data['cart'] = session()->get('cart');
+            $view1 = view('layouts.product.poup-cart-desktop',$data)->render();
             return response()->json([
                 'html1' => $view1,
-                // 'html' => $view,
             ]);
         }
     }
@@ -121,9 +138,12 @@ class CartController extends Controller
                 unset($cart[$request->id]);
             }
             session()->put('cart', $cart);
-            $view1 = view('layouts.product.poup-cart-desktop',$cart)->render();
+            $data['cart'] = session()->get('cart');
+            $view1 = view('layouts.product.poup-cart-desktop',$data)->render();
+            $view2 = view('layouts.product.count-cart',$data)->render();
             return response()->json([
                 'html1' => $view1,
+                'html2' => $view2,
             ]);
         }
     }

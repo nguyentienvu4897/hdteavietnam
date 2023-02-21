@@ -147,9 +147,7 @@ $imgs = json_decode($product->images);
                         <div class="box-variant clearfix ">
                         </div>
                         <div class="clearfix form-group ">
-                           
                            <div class="custom custom-btn-number show">
-                              
                               <div class="custom custom-btn-numbers form-control">		
                                  <button 
                                  onclick="var result = document.getElementById('qty'); 
@@ -157,18 +155,13 @@ $imgs = json_decode($product->images);
                                  if( !isNaN(qty) & qty > 1 ) result.value--;return false;" 
                                  class="btn-minus btn-cts" 
                                  type="button">–</button>
-                         
                                  <input type="text" class="qty input-text" id="qty" name="quantity" size="4" value="1" maxlength="3" disabled/>
-                         
                                  <button onclick="var result = document.getElementById('qty'); var qty = result.value; 
                                  if( !isNaN(qty)) result.value++;return false;" 
                                  class="btn-plus btn-cts" 
                                  type="button">+</button>
                                  </div>
-                  
-                    
                            </div>
-                           
                         </div>
                         <div class="product-summary">
                            <div class="rte">
@@ -211,23 +204,6 @@ $imgs = json_decode($product->images);
             </div>
          </div>
       </div>
-      <script>
-         $('.add_to_cart ').click(function (e) { 
-    e.preventDefault();
-    url = $(this).data('url');
-    id = $(this).data('id');
-    console.log(url,id);
-    $.ajax({
-        type: "GET",
-        url: url,
-        success: function (data) {
-            $('#CartDrawer').html(data.html1);
-            $('#CartDrawer').addClass('active');
-        }
-    });
-    
-});
-      </script>
       <div class="product_bottom">
          <div class="container">
             <div class="row">
@@ -528,13 +504,7 @@ $imgs = json_decode($product->images);
    	}); 
    });
 </script>
-<link href="//bizweb.dktcdn.net/100/448/970/themes/894899/assets/bpr-products-module.css?1676280280637" rel="stylesheet" type="text/css" media="all" />
-<div class="sapo-product-reviews-module"></div>
-<script>
-   (function($){"use strict";$.ajaxChimp={responses:{"We have sent you a confirmation email":0,"Please enter a valueggg":1,"An email address must contain a single @":2,"The domain portion of the email address is invalid (the portion after the @: )":3,"The username portion of the email address is invalid (the portion before the @: )":4,"This email address looks fake or invalid. Please enter a real email address":5},translations:{en:null},init:function(selector,options){$(selector).ajaxChimp(options)}};$.fn.ajaxChimp=function(options){$(this).each(function(i,elem){var form=$(elem);var email=form.find("input[type=email]");var label=form.find("label[for="+email.attr("id")+"]");var settings=$.extend({url:form.attr("action"),language:"en"},options);var url=settings.url.replace("/post?","/post-json?").concat("&c=?");form.attr("novalidate","true");email.attr("name","EMAIL");form.submit(function(){var msg;function successCallback(resp){if(resp.result==="success"){msg="We have sent you a confirmation email";label.removeClass("error").addClass("valid");email.removeClass("error").addClass("valid")}else{email.removeClass("valid").addClass("error");label.removeClass("valid").addClass("error");var index=-1;try{var parts=resp.msg.split(" - ",2);if(parts[1]===undefined){msg=resp.msg}else{var i=parseInt(parts[0],10);if(i.toString()===parts[0]){index=parts[0];msg=parts[1]}else{index=-1;msg=resp.msg}}}catch(e){index=-1;msg=resp.msg}}if(settings.language!=="en"&&$.ajaxChimp.responses[msg]!==undefined&&$.ajaxChimp.translations&&$.ajaxChimp.translations[settings.language]&&$.ajaxChimp.translations[settings.language][$.ajaxChimp.responses[msg]]){msg=$.ajaxChimp.translations[settings.language][$.ajaxChimp.responses[msg]]}label.html(msg);label.show(2e3);if(settings.callback){settings.callback(resp)}}var data={};var dataArray=form.serializeArray();$.each(dataArray,function(index,item){data[item.name]=item.value});$.ajax({url:url,data:data,success:successCallback,dataType:"jsonp",error:function(resp,text){console.log("mailchimp ajax submit error: "+text)}});var submitMsg="Submitting...";if(settings.language!=="en"&&$.ajaxChimp.translations&&$.ajaxChimp.translations[settings.language]&&$.ajaxChimp.translations[settings.language]["submit"]){submitMsg=$.ajaxChimp.translations[settings.language]["submit"]}label.html(submitMsg).show(2e3);return false})});return this}})(jQuery);
-</script>
 <style>
-                             
    .custom-btn-numbers {
    float: left;
    box-shadow: none;

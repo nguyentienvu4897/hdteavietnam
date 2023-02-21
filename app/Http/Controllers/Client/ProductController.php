@@ -299,7 +299,7 @@ class ProductController extends Controller
     
     public function ajaxProCate($id)
     {
-        $data['products'] = Product::where('category', $id)->get(['id','images','name','slug','cate_slug']);
+        $data['products'] = Product::where('category', $id)->get(['id','category','name','discount','price','images','slug','cate_slug','type_slug','description']);
         $view = view('layouts.product.getproajax', $data)->render();
         return response()->json([
             'html'=>$view
